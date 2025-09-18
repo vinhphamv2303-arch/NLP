@@ -1,0 +1,39 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="dashscope" />
+          <option value="tqdm" />
+          <option value="datasets" />
+          <option value="einops" />
+          <option value="colpali-engine" />
+          <option value="scikit_learn" />
+          <option value="seaborn" />
+          <option value="tiktoken" />
+          <option value="torch" />
+          <option value="torchvision" />
+          <option value="transformers" />
+          <option value="qwen-vl-utils" />
+          <option value="llama-cloud" />
+          <option value="llama-index" />
+          <option value="llama-index-agent-openai" />
+          <option value="llama-index-cli" />
+          <option value="llama-index-core" />
+          <option value="llama-index-embeddings-huggingface" />
+          <option value="llama-index-embeddings-openai" />
+          <option value="llama-index-indices-managed-llama-cloud" />
+          <option value="llama-index-legacy" />
+          <option value="llama-index-llms-openai" />
+          <option value="llama-index-multi-modal-llms-openai" />
+          <option value="llama-index-program-openai" />
+          <option value="llama-index-question-gen-openai" />
+          <option value="llama-index-readers-file" />
+          <option value="llama-index-readers-llama-parse" />
+          <option value="llama-parse" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
