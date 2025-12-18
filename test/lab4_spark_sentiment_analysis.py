@@ -91,6 +91,7 @@ def main():
         spark.stop()
         return
 
+
     # 7. EVALUATE
     logger.info("Step 5: Evaluate on Test Data...")
     predictions = model.transform(testData)
@@ -102,12 +103,28 @@ def main():
         check = "CORRECT" if row.label == row.prediction else "WRONG"
         logger.info(f"Text: '{row.text}' | Label: {row.label} | Pred: {row.prediction} -> {check}")
 
-    # Tính Accuracy
-    evaluator = MulticlassClassificationEvaluator(metricName="accuracy")
-    accuracy = evaluator.evaluate(predictions)
+    # --- TÍNH TOÁN CÁC CHỈ SỐ ---
+    evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction")
 
+    # 1. Accuracy
+    accuracy = evaluator.setMetricName("accuracy").evaluate(predictions)
+
+    # 2. Precision (Weighted Precision)
+    precision = evaluator.setMetricName("weightedPrecision").evaluate(predictions)
+
+    # 3. Recall (Weighted Recall)
+    recall = evaluator.setMetricName("weightedRecall").evaluate(predictions)
+
+    # 4. F1-Score
+    f1 = evaluator.setMetricName("f1").evaluate(predictions)
+
+    # --- LOG KẾT QUẢ ---
     logger.info("-" * 30)
-    logger.info(f"ACCURACY: {accuracy:.4f}")
+    logger.info("=== EVALUATION METRICS ===")
+    logger.info(f"Accuracy:  {accuracy:.4f}")
+    logger.info(f"Precision: {precision:.4f}")
+    logger.info(f"Recall:    {recall:.4f}")
+    logger.info(f"F1 Score:  {f1:.4f}")
     logger.info("-" * 30)
 
     # Đóng Spark

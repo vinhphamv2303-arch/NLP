@@ -17,6 +17,26 @@ except ImportError:
     sys.exit(1)
 
 
+def evaluate_and_log(predictions, model_name, logger):
+    """
+    Hàm phụ trợ để tính và log 4 chỉ số quan trọng
+    """
+    evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction")
+
+    acc = evaluator.setMetricName("accuracy").evaluate(predictions)
+    prec = evaluator.setMetricName("weightedPrecision").evaluate(predictions)
+    rec = evaluator.setMetricName("weightedRecall").evaluate(predictions)
+    f1 = evaluator.setMetricName("f1").evaluate(predictions)
+
+    logger.info(f"--- {model_name} Metrics ---")
+    logger.info(f"Accuracy:  {acc:.4f}")
+    logger.info(f"Precision: {prec:.4f}")
+    logger.info(f"Recall:    {rec:.4f}")
+    logger.info(f"F1 Score:  {f1:.4f}")
+
+    return acc, f1
+
+
 def main():
     logger = get_logger(filename="lab4_improvement.log", output_dir="../output/lab4")
     logger.info("=== TASK 4: FINAL TUNING (LR vs NAIVE BAYES) ===")
@@ -39,49 +59,56 @@ def main():
     # Chia Train/Test
     train, test = df.randomSplit([0.8, 0.2], seed=42)
 
-    # 2. PREPROCESSING (Dùng CountVectorizer thay vì HashingTF để NaiveBayes chạy tốt hơn)
+    # 2. PREPROCESSING (CountVectorizer + minDF=2.0)
     tokenizer = Tokenizer(inputCol="text", outputCol="words")
     stopwords = StopWordsRemover(inputCol="words", outputCol="filtered")
 
-    # vocabSize: Giới hạn số từ vựng quan trọng nhất (Feature Selection)
+    # vocabSize=5000, minDF=2.0 (Lọc bỏ từ xuất hiện < 2 lần)
     cv = CountVectorizer(inputCol="filtered", outputCol="raw_features", vocabSize=5000, minDF=2.0)
     idf = IDF(inputCol="raw_features", outputCol="features")
 
     # --- MODEL 1: LOGISTIC REGRESSION (TUNED) ---
-    # Tăng regParam lên 0.02 để giảm overfitting
     lr = LogisticRegression(featuresCol="features", labelCol="label", maxIter=20, regParam=0.02)
 
     # --- MODEL 2: NAIVE BAYES ---
-    # Model "huyền thoại" cho text classification
     nb = NaiveBayes(featuresCol="features", labelCol="label", smoothing=1.0, modelType="multinomial")
 
     # 3. TRAINING & EVALUATE
-    evaluator = MulticlassClassificationEvaluator(metricName="accuracy")
 
     # --- CHẠY LOGISTIC REGRESSION ---
     logger.info(">>> Running Logistic Regression (Tuned)...")
     pipeline_lr = Pipeline(stages=[tokenizer, stopwords, cv, idf, lr])
     model_lr = pipeline_lr.fit(train)
     pred_lr = model_lr.transform(test)
-    acc_lr = evaluator.evaluate(pred_lr)
-    logger.info(f"Logistic Regression Accuracy: {acc_lr:.4f}")
+
+    # Gọi hàm evaluate cho LR
+    acc_lr, f1_lr = evaluate_and_log(pred_lr, "Logistic Regression", logger)
 
     # --- CHẠY NAIVE BAYES ---
-    logger.info(">>> Running Naive Bayes...")
+    logger.info("\n>>> Running Naive Bayes...")
     pipeline_nb = Pipeline(stages=[tokenizer, stopwords, cv, idf, nb])
     model_nb = pipeline_nb.fit(train)
     pred_nb = model_nb.transform(test)
-    acc_nb = evaluator.evaluate(pred_nb)
-    logger.info(f"Naive Bayes Accuracy:        {acc_nb:.4f}")
 
-    # So sánh kết quả
+    # Gọi hàm evaluate cho NB
+    acc_nb, f1_nb = evaluate_and_log(pred_nb, "Naive Bayes", logger)
+
+    # --- TỔNG KẾT ---
     logger.info("-" * 40)
+    logger.info("COMPARISON SUMMARY:")
     logger.info(f"LR Base (Previous): ~0.7295")
-    logger.info(f"LR Tuned:           {acc_lr:.4f}")
-    logger.info(f"Naive Bayes:        {acc_nb:.4f}")
+    logger.info(f"LR Tuned Accuracy:  {acc_lr:.4f} (F1: {f1_lr:.4f})")
+    logger.info(f"Naive Bayes Accuracy: {acc_nb:.4f} (F1: {f1_nb:.4f})")
 
-    winner = "Naive Bayes" if acc_nb > acc_lr else "Logistic Regression"
-    logger.info(f"WINNER: {winner}")
+    # Quyết định model chiến thắng dựa trên Accuracy (hoặc F1)
+    if acc_lr > acc_nb:
+        winner = "Logistic Regression"
+        diff = acc_lr - acc_nb
+    else:
+        winner = "Naive Bayes"
+        diff = acc_nb - acc_lr
+
+    logger.info(f"WINNER: {winner} (Lead by {diff:.4f})")
     logger.info("-" * 40)
 
     spark.stop()

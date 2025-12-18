@@ -1,11 +1,21 @@
 === TASK 4: FINAL TUNING (LR vs NAIVE BAYES) ===
 >>> Running Logistic Regression (Tuned)...
-Logistic Regression Accuracy: 0.7656
+--- Logistic Regression Metrics ---
+Accuracy:  0.7656
+Precision: 0.7621
+Recall:    0.7656
+F1 Score:  0.7595
+
 >>> Running Naive Bayes...
-Naive Bayes Accuracy:        0.7520
+--- Naive Bayes Metrics ---
+Accuracy:  0.7520
+Precision: 0.7537
+Recall:    0.7520
+F1 Score:  0.7528
 ----------------------------------------
+COMPARISON SUMMARY:
 LR Base (Previous): ~0.7295
-LR Tuned:           0.7656
-Naive Bayes:        0.7520
-WINNER: Logistic Regression
+LR Tuned Accuracy:  0.7656 (F1: 0.7595)
+Naive Bayes Accuracy: 0.7520 (F1: 0.7528)
+WINNER: Logistic Regression (Lead by 0.0135)
 ----------------------------------------

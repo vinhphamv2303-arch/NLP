@@ -20,6 +20,10 @@ Text: '"RT @WSJheard: Canâ€™t get your hands on a Nintendo console to play 
 Text: '#ContrAlert Don't Panic: Wall Street Is Going Crazy For Student oans -- But It's Not a #Bubble -  SM' | Label: 0.0 | Pred: 1.0 -> WRONG
 Text: '#CoronavirusPandemic As bad as #China's economic dive is, the slump is even more perilous for the rest of #Asia.… https://t.co/PuRY8HSD1V' | Label: 0.0 | Pred: 0.0 -> CORRECT
 ------------------------------
-ACCURACY: 0.7295
+=== EVALUATION METRICS ===
+Accuracy:  0.7295
+Precision: 0.7255
+Recall:    0.7295
+F1 Score:  0.7266
 ------------------------------
 === END LAB 4 ADVANCED ===
