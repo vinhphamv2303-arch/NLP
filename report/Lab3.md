@@ -1,0 +1,1 @@
+# Báo cáo Thực hành: Mã hóa văn bản bằng vector dày đặc
