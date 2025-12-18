@@ -1,0 +1,60 @@
+--- LAB 3 BONUS: TRAIN WORD2VEC (CLEAN DATA) ---
+
+1. Reading and Cleaning data from: ..\data\UD_English-EWT\UD_English-EWT\en_ewt-ud-train.txt
+   Params: {'vector_size': 50, 'window': 5, 'min_count': 2, 'workers': 16, 'epochs': 10}
+
+2. Training model...
+-> Training completed.
+-> Model saved to: results\word2vec_ewt.model
+
+3. Testing the new model:
+
+   Similar to 'government':
+     - almost          : 0.9952
+     - program         : 0.9945
+     - upon            : 0.9938
+     - late            : 0.9928
+     - light           : 0.9927
+     - period          : 0.9925
+     - team            : 0.9922
+     - earlier         : 0.9922
+     - cut             : 0.9921
+     - hole            : 0.9918
+
+   Similar to 'people':
+     - other           : 0.9409
+     - all             : 0.9396
+     - many            : 0.9345
+     - fun             : 0.9302
+     - some            : 0.9246
+     - places          : 0.9219
+     - kids            : 0.9206
+     - boys            : 0.9136
+     - these           : 0.9123
+     - things          : 0.9114
+
+   Similar to 'good':
+     - still           : 0.9653
+     - too             : 0.9639
+     - but             : 0.9621
+     - ideation        : 0.9599
+     - thing           : 0.9564
+     - doing           : 0.9529
+     - really          : 0.9520
+     - nice            : 0.9508
+     - so              : 0.9472
+     - afraid          : 0.9460
+
+   Similar to 'time':
+     - day             : 0.9456
+     - week            : 0.9341
+     - way             : 0.9262
+     - one             : 0.9251
+     - first           : 0.9226
+     - put             : 0.9175
+     - place           : 0.9119
+     - work            : 0.9077
+     - out             : 0.9064
+     - up              : 0.9027
+
+--- END ---
