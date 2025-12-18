@@ -62,3 +62,27 @@ Khi thực hiện tìm kiếm Top-K từ tương đồng với từ khóa **"peo
 
 * **Kết luận:**
   Không gian embedding sau khi giảm chiều chỉ nên sử dụng cho mục đích trực quan hóa, không phù hợp cho các phép tính độ tương đồng chính xác.
+
+### 3.3. Hiện tượng Overfitting trên tập dữ liệu nhỏ (Gensim – UD Corpus)
+
+* Khi huấn luyện Word2Vec trên tập dữ liệu UD_English-EWT (khoảng 200k từ), xuất hiện hiện tượng bất thường:
+
+* Biểu hiện: Điểm tương đồng Cosine giữa nhiều cặp từ không liên quan đạt mức rất cao (0.99xx), ví dụ: government ≈ hole.
+
+* Nguyên nhân: Đây là dấu hiệu điển hình của Overfitting do dữ liệu quá ít và phân bố ngữ cảnh nghèo nàn (Data Sparsity).
+
+* Khi một từ chỉ xuất hiện trong rất ít câu, vector của nó bị chi phối mạnh bởi một vài ngữ cảnh ngẫu nhiên. Nếu hai từ vô tình xuất hiện trong cùng một ngữ cảnh hiếm hoi, mô hình sẽ gán cho chúng các vector gần như trùng nhau, dù về mặt ngữ nghĩa chúng hoàn toàn khác biệt.
+
+* Kết luận: Word2Vec không phù hợp để huấn luyện trên tập dữ liệu nhỏ, vì mô hình không có đủ thông tin để phân biệt ngữ nghĩa giữa các từ.
+
+### 3.4. Sự cải thiện khi huấn luyện trên dữ liệu lớn hơn (Spark – C4 Corpus)
+
+* Khi chuyển sang huấn luyện trên tập dữ liệu lớn hơn (C4, ~30k văn bản) bằng Apache Spark, kết quả trở nên hợp lý và sát thực tế hơn:
+
+* Similarity Score hợp lý (0.6 – 0.8): Các cặp từ có quan hệ ngữ nghĩa như computer – laptop đạt mức tương đồng khoảng 0.7, phản ánh đúng quan hệ bao hàm (laptop là một loại computer), thay vì trùng khít tuyệt đối.
+
+* Đặc trưng dữ liệu Web: Kết quả tìm kiếm xuất hiện các từ như link, uwowned, cho thấy mô hình học được dấu vết ngữ cảnh đặc trưng của dữ liệu Web Crawl (bản quyền, liên kết, metadata).
+
+* Ngữ nghĩa rõ ràng hơn: Từ government liên kết với federal, authorities – các mối quan hệ ngữ nghĩa hợp lý mà mô hình huấn luyện trên UD Corpus không thể học được.
+
+* Nhận định: Khi dữ liệu đủ lớn và đa dạng, mô hình bắt đầu thể hiện khả năng Generalization, tức là học được quy luật ngữ nghĩa thay vì ghi nhớ ngẫu nhiên.
