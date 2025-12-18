@@ -1,2 +1,45 @@
 --- LAB 3 ADVANCED: SPARK WORD2VEC (REAL DATA) ---
 1. Initializing Spark Session...
+-> Spark Session created successfully.
+
+2. Loading data from: ..\data\c4-train.00000-of-01024-30K.json.gz
+-> Loaded 30000 documents.
+
+3. Preprocessing data...
+-> Preprocessing done.
+
+4. Training Word2Vec model with Spark...
+-> Training completed.
+
+5. Testing the model:
+
+   Finding synonyms for 'computer':
+     - computers       : 0.7231
+     - desktop         : 0.7212
+     - laptop          : 0.6951
+     - uwowned         : 0.6639
+     - device          : 0.6325
+
+   Finding synonyms for 'government':
+     - governments     : 0.8210
+     - authorities     : 0.7812
+     - federal         : 0.7499
+     - commission      : 0.7340
+     - syriza          : 0.7170
+
+   Finding synonyms for 'time':
+     - moment          : 0.5743
+     - period          : 0.5488
+     - day             : 0.5309
+     - gig             : 0.4891
+     - wasted          : 0.4870
+
+   Finding synonyms for 'people':
+     - individuals     : 0.7144
+     - those           : 0.7021
+     - folks           : 0.6948
+     - others          : 0.6898
+     - americans       : 0.6248
+
+-> Spark Session stopped.
+--- END ---

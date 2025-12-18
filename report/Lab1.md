@@ -82,7 +82,7 @@ Bài tập được tổ chức theo mô hình **lập trình hướng đối t�
 
 ---
 
-## 2. Cách chạy code và ghi log kết quả
+## 2. Cách chạy code và ghi log
 
 ### Thực hiện Lab 1
 
