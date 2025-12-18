@@ -23,3 +23,6 @@ ENV/
 # System files
 .DS_Store
 Thumbs.db
+
+# Datasets
+data/

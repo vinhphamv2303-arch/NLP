@@ -1,0 +1,27 @@
+--- LOG START: Output saved to ./output/lab1\tokenization_log.txt ---
+
+=== TEST CASE 1: Custom Sentences ===
+Original: Hello, world! This is a test.
+  [Simple]: ['hello', ',', 'world', '!', 'this', 'is', 'a', 'test', '.']
+  [Regex ]: ['hello', ',', 'world', '!', 'this', 'is', 'a', 'test', '.']
+------------------------------
+Original: NLP is fascinating... isn't it?
+  [Simple]: ['nlp', 'is', 'fascinating', '.', "isn't", 'it', '?']
+  [Regex ]: ['nlp', 'is', 'fascinating', '...', "isn't", 'it', '?']
+------------------------------
+Original: Let's see how it handles 123 numbers and punctuation!
+  [Simple]: ["let's", 'see', 'how', 'it', 'handles', '123', 'numbers', 'and', 'punctuation', '!']
+  [Regex ]: ["let's", 'see', 'how', 'it', 'handles', '123', 'numbers', 'and', 'punctuation', '!']
+------------------------------
+
+=== TEST CASE 2: UD_English-EWT Dataset ===
+--- Tokenizing Sample Text ---
+Original Sample (first 100 chars): Al-Zaman : American forces killed Shaikh Abdullah al-Ani, the preacher at the
+mosque in the town of ...
+
+SimpleTokenizer Output (first 20 tokens): ['al-zaman', '', ':', 'american', 'forces', 'killed', 'shaikh', 'abdullah', 'al-ani', ',', 'the', 'preacher', 'at', 'the', 'mosque', 'in', 'the', 'town', 'of', 'qaim']
+
+RegexTokenizer Output (first 20 tokens): ['al-zaman', ':', 'american', 'forces', 'killed', 'shaikh', 'abdullah', 'al-ani', ',', 'the', 'preacher', 'at', 'the', 'mosque', 'in', 'the', 'town', 'of', 'qaim', ',']
+
+Total tokens found (Simple): 100
+Total tokens found (Regex) : 100

@@ -1,0 +1,23 @@
+--- LOG START: Lab 2 Vectorization Output ---
+
+--- Input Corpus ---
+Doc 0: I love NLP.
+Doc 1: I love programming.
+Doc 2: NLP is a subfield of AI.
+
+--- Learned Vocabulary (Word -> Index) ---
+  'i': 0
+  'love': 1
+  'nlp': 2
+  '.': 3
+  'programming': 4
+  'is': 5
+  'a': 6
+  'subfield': 7
+  'of': 8
+  'ai': 9
+
+--- Document-Term Matrix ---
+Document 0: [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+Document 1: [1, 1, 0, 1, 1, 0, 0, 0, 0, 0]
+Document 2: [0, 0, 1, 1, 0, 1, 1, 1, 1, 1]
