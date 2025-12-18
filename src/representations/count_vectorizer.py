@@ -1,4 +1,7 @@
+import numpy as np
+
 from src.core.interfaces import Vectorizer, Tokenizer
+
 
 
 class CountVectorizer(Vectorizer):
@@ -29,4 +32,4 @@ class CountVectorizer(Vectorizer):
                     index = self.vocabulary_[token]
                     vector[index] += 1
             vectors.append(vector)
-        return vectors
+        return np.array(vectors)

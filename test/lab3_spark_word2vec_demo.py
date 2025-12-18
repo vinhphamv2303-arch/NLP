@@ -78,7 +78,7 @@ def main():
         logger.info("-> Preprocessing done.")
 
         # 5. Train Word2Vec
-        logger.info("\n4. Training Word2Vec model with Spark...")
+        logger.info("\n4. Training Word2Vec pretrained_models with Spark...")
 
         # Cấu hình Word2Vec
         # vectorSize: 100 chiều (chuẩn cho data lớn)
@@ -96,7 +96,7 @@ def main():
         logger.info("-> Training completed.")
 
         # 6. Demo Usage
-        logger.info("\n5. Testing the model:")
+        logger.info("\n5. Testing the pretrained_models:")
 
         # Thử tìm các từ phổ biến
         test_words = ["computer", "government", "time", "people"]

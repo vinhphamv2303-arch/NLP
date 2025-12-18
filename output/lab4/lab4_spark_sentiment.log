@@ -1,0 +1,25 @@
+=== LAB 4 ADVANCED: SPARK SENTIMENT ANALYSIS ===
+Step 1: Initialize Spark Session...
+Step 2: Load Data from ../data/sentiments.csv
+Normalizing sentiment labels (-1/1 to 0/1)...
+Training Count: 4682 | Test Count: 1109
+Step 3: Build Preprocessing Pipeline...
+Step 4: Train the Model (LogisticRegression)...
+Training started...
+Model training completed.
+Step 5: Evaluate on Test Data...
+--- PREDICTION SAMPLES ---
+Text: '  ISG An update to our Feb 20th video review..if it closes below 495 much lower to come soon  ' | Label: 0.0 | Pred: 1.0 -> WRONG
+Text: '  The rodeo clown sent BK screaming into the SI weekly red zone...time to peel away before it turns...' | Label: 0.0 | Pred: 0.0 -> CORRECT
+Text: ' , ES,SPY, Ground Hog Week, distribution at highs..  ' | Label: 0.0 | Pred: 1.0 -> WRONG
+Text: ' ES, S  PAT TWO, update  ' | Label: 0.0 | Pred: 0.0 -> CORRECT
+Text: ' PCN doulble top at key fib retracement weekly....time to exit ...' | Label: 0.0 | Pred: 1.0 -> WRONG
+Text: ' also not very healthy, fell back below DT line after breaking it, SI weak, MACD turning down  ' | Label: 0.0 | Pred: 1.0 -> WRONG
+Text: ' thinking out loud. 50 mva sub 200 mva- done. Bottoming tails at 61.60 providing obvious stop. Catalyst higher? 29% short interest.' | Label: 1.0 | Pred: 0.0 -> WRONG
+Text: '"RT @WSJheard: Canâ€™t get your hands on a Nintendo console to play the new version of ""Animal Crossing""? You could always buy Nintendo stockâ€¦"' | Label: 1.0 | Pred: 1.0 -> CORRECT
+Text: '#ContrAlert Don't Panic: Wall Street Is Going Crazy For Student oans -- But It's Not a #Bubble -  SM' | Label: 0.0 | Pred: 1.0 -> WRONG
+Text: '#CoronavirusPandemic As bad as #China's economic dive is, the slump is even more perilous for the rest of #Asia.… https://t.co/PuRY8HSD1V' | Label: 0.0 | Pred: 0.0 -> CORRECT
+------------------------------
+ACCURACY: 0.7295
+------------------------------
+=== END LAB 4 ADVANCED ===

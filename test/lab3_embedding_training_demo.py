@@ -62,7 +62,7 @@ def main():
 
         # Cấu hình Params
         # Giảm vector_size xuống 50 vì tập dữ liệu này thực tế khá nhỏ (~200k từ)
-        # Tăng epochs (iter) lên để model học kỹ hơn
+        # Tăng epochs (iter) lên để pretrained_models học kỹ hơn
         params = {
             'vector_size': 50,
             'window': 5,
@@ -73,19 +73,19 @@ def main():
         logger.info(f"   Params: {params}")
 
         # 4. Train Model
-        logger.info("\n2. Training model...")
+        logger.info("\n2. Training pretrained_models...")
         model = Word2Vec(sentences=sentences, **params)
         logger.info("-> Training completed.")
 
         # 5. Save Model
         output_dir = "results"
         os.makedirs(output_dir, exist_ok=True)
-        model_save_path = os.path.join(output_dir, "word2vec_ewt.model")
+        model_save_path = os.path.join(output_dir, "word2vec_ewt.pretrained_models")
         model.save(model_save_path)
         logger.info(f"-> Model saved to: {model_save_path}")
 
         # 6. Demo Usage
-        logger.info("\n3. Testing the new model:")
+        logger.info("\n3. Testing the new pretrained_models:")
 
         test_words = ['government', 'people', 'good', 'time']
 

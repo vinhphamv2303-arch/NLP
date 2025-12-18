@@ -86,3 +86,9 @@ Khi thực hiện tìm kiếm Top-K từ tương đồng với từ khóa **"peo
 * Ngữ nghĩa rõ ràng hơn: Từ government liên kết với federal, authorities – các mối quan hệ ngữ nghĩa hợp lý mà mô hình huấn luyện trên UD Corpus không thể học được.
 
 * Nhận định: Khi dữ liệu đủ lớn và đa dạng, mô hình bắt đầu thể hiện khả năng Generalization, tức là học được quy luật ngữ nghĩa thay vì ghi nhớ ngẫu nhiên.
+
+## 4. Khó khăn gặp phải và cách giải quyết
+
+* File dữ liệu chứa nhiều metadata (# text = ...) khiến Gensim học sai (coi ID là từ vựng). Giải pháp: Viết lại trình đọc dữ liệu (UDCorpus) để lọc bỏ metadata và chuẩn hóa văn bản.
+
+* Vấn đề tương thích Java/Spark (Advanced Task).

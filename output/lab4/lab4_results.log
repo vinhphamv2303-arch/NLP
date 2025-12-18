@@ -1,0 +1,17 @@
+=== BẮT ĐẦU LAB 4: TEXT CLASSIFICATION ===
+Train size: 8 | Test size: 2
+Đang training...
+
+--- KẾT QUẢ ---
+Câu: 'The script was awful and dull.'
+   -> Dự đoán: Positive | Gốc: 0 -> SAI
+Câu: 'Highly recommend this, a masterpiece.'
+   -> Dự đoán: Positive | Gốc: 1 -> ĐÚNG
+
+--- METRICS ---
+accuracy: 0.5000
+precision: 0.5000
+recall: 1.0000
+f1_score: 0.6667
+
+=== HOÀN THÀNH ===
